@@ -47,6 +47,12 @@ def user_guess():
         break
     return row, column
 
+def computer_choice():
+    ship_r, ship_cl = randint(0,4), randint(0,4)
+    while board_pattern[ship_r][ship_cl] =='-':
+        ship_r, ship_cl = randint(0, 4), randint(0, 4) 
+    return ship_r, ship_cl
+
 def count_hits():
     count = 0
     for row in Guess_Pattern:
@@ -54,6 +60,7 @@ def count_hits():
             if column == 'X':
                 count += 1
     return count
+
 
 def main():
     computer_score, user_score = 0, 0
