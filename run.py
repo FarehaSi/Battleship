@@ -2,6 +2,7 @@ from random import randint
 
 board_pattern = [[' ']*5 for x in range(5)]
 let_to_num={'A':0,'B':1, 'C':2,'D':3,'E':4}
+computer_score, user_score = 0, 0
 
 def print_boards(board):
     """
@@ -55,15 +56,14 @@ def computer_choice():
 
 def count_hits():
     count = 0
-    for row in Guess_Pattern:
+    for row in board_pattern:
         for column in row:
             if column == 'X':
                 count += 1
     return count
 
-
 def main():
-    computer_score, user_score = 0, 0
+    # computer_score, user_score = 0, 0
     # board_pattern = [[' ']*5 for x in range(5)]
     # let_to_num={'A':0,'B':1, 'C':2,'D':3,'E':4}
 
@@ -72,8 +72,41 @@ def main():
     print('------------------------------------------------------------------\n')
     print('Test your luck against the computer in this game of battleship!\n')
     print("Guess the positions of the 5 hidden ships on your opponent's board before the computer beats you to it!\n")
-    print_boards(board_pattern)
-    create_ships()
-    row, column = user_guess()
+    # print_boards(board_pattern)
+    # create_ships()
+    # row, column = user_guess()
+    while True:
+        print_boards(board_pattern)
+        row,column = user_guess()
+        rowC, columnC = computer_choice()
+        print('you choice is : (%d, %d) \ncomputer choice is :(%d, %d)' 
+            % (row, column+1, rowC+1, columnC+1))
+        
+        if board_pattern[rowC][columnC] == 'X':
+            computer_score +=1
+        else:
+            board_pattern[rowC][columnC] = '-'
+        if board_pattern[row][column] == 'X':
+            print('Congratulations you have hit the battleship!')
+            board_pattern[row][column] = 'X'
+            user_score +=1
+        else:
+            print('Sorry, you missed!')
+            board_pattern[row][column] = '-'
+        if  count_hits() == 5:
+            if user_score > computer_score:
+                print("Congratulations! You have sunk all the battleships, you win!")
+            elif user_score == computer_score:
+                print("Oops! It's a draw!")
+            else:
+                print("You lose!")
+            print('your score is : %d'%user_score)
+            print('the computer score is : %d'%computer_score)
+            break
+        print('-'*50)
+        print('\n Select again: \n')
+    if user_score > computer_score:
+        print
+    print('Game Over!') 
 
 main()
