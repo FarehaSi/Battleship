@@ -4,6 +4,48 @@ board_pattern = [[' ']*5 for x in range(5)]
 let_to_num={'A':0,'B':1, 'C':2,'D':3,'E':4}
 computer_score, user_score = 0, 0
 
+class Board:
+    def __init__(self, board):
+        """
+        Initializing boards
+        """
+        self.board_pattern = board
+        self.print_board = [[' ']*5 for x in range(5)]
+        self.let_to_num = {'A': 0, 'B': 1, 'C': 2, 'D': 3, 'E': 4}
+        self.score_val = 0
+        self.count = 1
+
+    def create_ships(self):
+        """
+        Randomly generates 5 ships and places them on the board
+        """
+        for ship in range(5):
+            ship_r, ship_cl = randint(0, 4), randint(0, 4)
+            while self.board_pattern[ship_r][ship_cl] == 'X':
+                ship_r, ship_cl = randint(0, 4), randint(0, 4)
+            self.board_pattern[ship_r][ship_cl] = 'X'
+
+    def score(self,row,col):
+        """
+        manipulate scores and marks the hit spot
+        """
+        temp = self.score_val
+        if self.board_pattern[row][col] == 'X':
+            self.print_board[row][col] = 'X'
+            self.score_val +=1
+            
+        else:
+            self.board_pattern[row][col] = '-'
+            self.print_board[row][col] = '-'
+
+        return self.score_val>temp
+
+    def toList(self):
+        """
+        return the board for printing
+        """
+        return self.print_board
+
 def print_boards(board):
     """
     Prints two game boards to the console, one for the user and another for the computer
@@ -16,15 +58,15 @@ def print_boards(board):
         row_num += 1
     print()
 
-def create_ships():
-    """
-    Randomly generates 5 ships and places them on the board
-    """
-    for ship in range(5):
-        ship_r, ship_cl = randint(0,4), randint(0,4)
-        while board_pattern[ship_r][ship_cl] =='X':
-            ship_r, ship_cl = randint(0, 4), randint(0, 4) 
-        board_pattern[ship_r][ship_cl] = 'X'
+# def create_ships():
+#     """
+#     Randomly generates 5 ships and places them on the board
+#     """
+#     for ship in range(5):
+#         ship_r, ship_cl = randint(0,4), randint(0,4)
+#         while board_pattern[ship_r][ship_cl] =='X':
+#             ship_r, ship_cl = randint(0, 4), randint(0, 4) 
+#         board_pattern[ship_r][ship_cl] = 'X'
 
 def user_guess():
     """
