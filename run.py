@@ -10,7 +10,7 @@ class Board:
         self.print_board = [[' ']*5 for x in range(5)]
         self.let_to_num = {'A': 0, 'B': 1, 'C': 2, 'D': 3, 'E': 4}
         self.score_val = 0
-        self.count = 1
+        self.count = 0
 
     def create_ships(self):
         """
@@ -43,6 +43,13 @@ class Board:
         """
         return self.print_board
 
+    def count_hits(self):
+        count = 0
+        for row in self.print_board:
+            for column in row:
+                if column == 'X':
+                    count += 1
+        self.count = count
 
 class User(Board):
     def __init__(self, board):
@@ -129,13 +136,15 @@ def main():
         score = user.score(row, column)
         computer.score(rowC, columnC)
         print_boards(u_board=user.toList(), c_board=computer.toList())
+        user.count_hits()
+        computer.count_hits()
 
         if score:
             print('Congratulations you have hit the battleship!')
         else:
             print('Sorry, you missed!')
 
-        if user.count == 5:
+        if user.count == 5 or computer.count == 5:
             if user.score_val > computer.score_val:
                 print("Congratulations! You have sunk all the battleships, you win!")
             elif user.score_val == computer.score_val:
@@ -147,7 +156,7 @@ def main():
             break
         print('-'*50)
         print('\nTake your next turn! \n')
-        user.count += 1
+
     print('Game Over!')
 
 if __name__ == "__main__":
