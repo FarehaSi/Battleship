@@ -48,7 +48,12 @@ def user_guess():
     return row, column
 
 def count_hits():
-    pass
+    count = 0
+    for row in Guess_Pattern:
+        for column in row:
+            if column == 'X':
+                count += 1
+    return count
 
 def main():
     computer_score, user_score = 0, 0
