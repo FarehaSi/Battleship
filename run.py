@@ -1,8 +1,5 @@
 from random import randint
 
-board_pattern = [[' ']*5 for x in range(5)]
-let_to_num={'A':0,'B':1, 'C':2,'D':3,'E':4}
-computer_score, user_score = 0, 0
 
 class Board:
     def __init__(self, board):
@@ -46,109 +43,112 @@ class Board:
         """
         return self.print_board
 
-def print_boards(board):
+
+class User(Board):
+    def __init__(self, board):
+        """
+        Initialize user class
+        """
+        super().__init__(board)
+        self.create_ships()
+
+    def guess(self):
+        """
+        Allows user to choose the spot they wish to hit
+        """
+        while True:
+            row = input('Please enter a ship row 1-5 : ').upper()
+            while row not in ['1', '2', '3', '4', '5']:
+                print("Please enter a valid row ")
+                row = input('Please enter a ship row 1-5 : ')
+
+            column = input('Please enter a ship column A-E : ').upper()
+            while column not in ['A', 'B', 'C', 'D', 'E']:
+                print("Please enter a valid column ")
+                column = input('Please enter a ship column A-E : ')
+
+            row, column = int(row)-1, self.let_to_num[column]
+            if self.print_board[row][column] != ' ':
+                print('You already guessed that!')
+                continue
+            break
+        return row, column
+
+
+class Computer(Board):
+    def __init__(self, board):
+        """
+        Initialize Computer class
+        """
+        super().__init__(board)
+        self.create_ships()
+
+    def choice(self):
+        """
+        Allows computer to choose the spot they wish to hit
+        """
+        ship_r, ship_cl = randint(0, 4), randint(0, 4)
+        while self.board_pattern[ship_r][ship_cl] == '-':
+            ship_r, ship_cl = randint(0, 4), randint(0, 4)
+        return ship_r, ship_cl
+
+
+def print_boards(u_board, c_board):
     """
     Prints two game boards to the console, one for the user and another for the computer
     """
     print('  A B C D E ', '\t  A B C D E ',)
     print('  _________' '\t  _________',)
-    row_num=1
-    for row in board:
-        print("%d|%s|" % (row_num, "|".join(row)),"\t%d|%s|" % (row_num, "|".join(row)))
+    row_num = 1
+    for row in range(5):
+        print("%d|%s|" % (row_num, "|".join(u_board[row])),
+              "\t%d|%s|" % (row_num, "|".join(c_board[row])))
         row_num += 1
     print()
 
-# def create_ships():
-#     """
-#     Randomly generates 5 ships and places them on the board
-#     """
-#     for ship in range(5):
-#         ship_r, ship_cl = randint(0,4), randint(0,4)
-#         while board_pattern[ship_r][ship_cl] =='X':
-#             ship_r, ship_cl = randint(0, 4), randint(0, 4) 
-#         board_pattern[ship_r][ship_cl] = 'X'
-
-def user_guess():
-    """
-    Allows used to choose the spot they wish to hit
-    """
-    while True:
-        #Enter the row number between 1 to 5
-        row = input('Please enter a ship row 1-5 : ').upper()
-        while row not in ['1','2','3','4','5']:
-            print("Please enter a valid row ")
-            row = input('Please enter a ship row 1-5 ')
-        #Enter the Ship column from A TO E
-        column = input('Please enter a ship column A-E ').upper()
-        while column not in ['A','B','C','D','E']:
-            print("Please enter a valid column ")
-            column = input('Please enter a ship column A-E ')
-        row, column = int(row)-1, let_to_num[column]
-        if board_pattern[row][column] == '-':
-            print('You already guessed that')
-            continue
-        break
-    return row, column
-
-def computer_choice():
-    ship_r, ship_cl = randint(0,4), randint(0,4)
-    while board_pattern[ship_r][ship_cl] =='-':
-        ship_r, ship_cl = randint(0, 4), randint(0, 4) 
-    return ship_r, ship_cl
-
-def count_hits():
-    count = 0
-    for row in board_pattern:
-        for column in row:
-            if column == 'X':
-                count += 1
-    return count
 
 def main():
-    # computer_score, user_score = 0, 0
-    # board_pattern = [[' ']*5 for x in range(5)]
-    # let_to_num={'A':0,'B':1, 'C':2,'D':3,'E':4}
 
     print('------------------------------------------------------------------')
     print('--------------| Welcome to the Combat of Battleship |-------------')
     print('------------------------------------------------------------------\n')
     print('Test your luck against the computer in this game of battleship!\n')
     print("Guess the positions of the 5 hidden ships on your opponent's board before the computer beats you to it!\n")
-    # print_boards(board_pattern)
-    # create_ships()
-    # row, column = user_guess()
+    
+    board_pattern = [[' ']*5 for x in range(5)]
+    user = User(board_pattern)
+    computer = Computer(board_pattern)
+    print_boards(u_board=user.toList(), c_board=computer.toList())
+
     while True:
-        print_boards(board_pattern)
-        row,column = user_guess()
-        rowC, columnC = computer_choice()
-        print('you choice is : (%d, %d) \ncomputer choice is :(%d, %d)' 
-            % (row, column+1, rowC+1, columnC+1))
-        
-        if board_pattern[rowC][columnC] == 'X':
-            computer_score +=1
-        else:
-            board_pattern[rowC][columnC] = '-'
-        if board_pattern[row][column] == 'X':
+        row, column = user.guess()
+        rowC, columnC = computer.choice()
+        print('You selected the coordinates: (%d, %d) \nThe computer chose: (%d, %d)'
+              % (row+1, column+1, rowC+1, columnC+1))
+
+        score = user.score(row, column)
+        computer.score(rowC, columnC)
+        print_boards(u_board=user.toList(), c_board=computer.toList())
+
+        if score:
             print('Congratulations you have hit the battleship!')
-            board_pattern[row][column] = 'X'
-            user_score +=1
         else:
             print('Sorry, you missed!')
-            board_pattern[row][column] = '-'
-        if  count_hits() == 5:
-            if user_score > computer_score:
+
+        if user.count == 5:
+            if user.score_val > computer.score_val:
                 print("Congratulations! You have sunk all the battleships, you win!")
-            elif user_score == computer_score:
+            elif user.score_val == computer.score_val:
                 print("Oops! It's a draw!")
             else:
                 print("You lose!")
-            print('your score is : %d'%user_score)
-            print('the computer score is : %d'%computer_score)
+            print('Your score is: %d'%user.score_val)
+            print("The computer's score is: %d"%computer.score_val)
             break
         print('-'*50)
         print('\n Select again: \n')
-    if user_score > computer_score:
-        print
-    print('Game Over!') 
+        user.count += 1
+    print('Game Over!')
 
-main()
+if __name__ == "__main__":
+    main()
