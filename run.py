@@ -57,15 +57,15 @@ class User(Board):
         Allows user to choose the spot they wish to hit
         """
         while True:
-            row = input('Please enter a ship row 1-5 : ').upper()
+            row = input('Please enter a ship row 1-5:\n').upper()
             while row not in ['1', '2', '3', '4', '5']:
-                print("Please enter a valid row ")
-                row = input('Please enter a ship row 1-5 : ')
+                print("Please enter a valid row.")
+                row = input('Please enter a ship row 1-5:\n')
 
-            column = input('Please enter a ship column A-E : ').upper()
+            column = input('Please enter a ship column A-E:\n').upper()
             while column not in ['A', 'B', 'C', 'D', 'E']:
-                print("Please enter a valid column ")
-                column = input('Please enter a ship column A-E : ')
+                print("Please enter a valid column.")
+                column = input('Please enter a ship column A-E:\n')
 
             row, column = int(row)-1, self.let_to_num[column]
             if self.print_board[row][column] != ' ':
@@ -146,7 +146,7 @@ def main():
             print("The computer's score is: %d"%computer.score_val)
             break
         print('-'*50)
-        print('\n Select again: \n')
+        print('\nTake your next turn! \n')
         user.count += 1
     print('Game Over!')
 
