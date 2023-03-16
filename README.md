@@ -8,7 +8,8 @@ The game has been manually tested using the following methods:
 - The
 ### Validator Testing
 The code has been passed through the <a href=" https://pep8ci.herokuapp.com/" target="_blank">CI PEP8 Python Validator</a>.
-![Screenshot (12)](https://user-images.githubusercontent.com/116716786/225642263-d994d28a-5809-4e00-b765-49407889aa4e.png)
+
+![PythonLinter](https://user-images.githubusercontent.com/116716786/225642535-33e440d7-2bc3-45f5-a464-cb943fd0fe10.png)
 ## Deployment
 This site was deployed using Code Institute’s mock terminal for Heroku. The steps for deployment are as follows:
 - Fork or clone this repository 
