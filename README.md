@@ -5,7 +5,11 @@ Combat of Battleship is meant for a single user to play against the computer. Th
 ![WebsiteMockup](https://user-images.githubusercontent.com/116716786/225623836-5e05fb86-4bf3-4605-97a6-0fcb109b897c.png)
 ## Testing
 The game has been manually tested using the following methods:
-- The
+- Invalid inputs were given: 
+   - Strings
+   - Integers outside the scope of the board 
+   - Same integers were repeated twice 
+- The game was run in both the GitPod Console and the Code Institute Heroku Terminal
 ### Validator Testing
 The code has been passed through the <a href=" https://pep8ci.herokuapp.com/" target="_blank">CI PEP8 Python Validator</a>.
 
