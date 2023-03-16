@@ -8,9 +8,9 @@ class Board:
         """
         self.board_pattern = board
         self.print_board = [[' ']*5 for x in range(5)]
-        self.let_to_num = {'A': 0, 'B': 1, 'C': 2, 'D': 3, 'E': 4}
         self.score_val = 0
         self.count = 0
+        self.create_ships()
 
     def create_ships(self):
         """
@@ -51,30 +51,32 @@ class Board:
                     count += 1
         self.count = count
 
+    def find_cell(self,cell):
+        cel = {}
+        cell = int(cell) - 1
+        for i in range(5):
+            for j in range(5):
+                cel[j+i*5] = [i,j]
+        return cel[cell][0],cel[cell][1]
+
 class User(Board):
     def __init__(self, board):
         """
         Initialize user class
         """
         super().__init__(board)
-        self.create_ships()
 
     def guess(self):
         """
         Allows user to choose the spot they wish to hit
         """
         while True:
-            row = input('Please enter a ship row 1-5:\n').upper()
-            while row not in ['1', '2', '3', '4', '5']:
-                print("Please enter a valid row.")
-                row = input('Please enter a ship row 1-5:\n')
+            cell = input('Please enter a cell no 1-25 : ').upper()
+            while cell not in [str(i) for i in range(1,26)]:
+                print("Please enter a valid cell ")
+                cell = input('Please enter a cell no 1-25 : ')
 
-            column = input('Please enter a ship column A-E:\n').upper()
-            while column not in ['A', 'B', 'C', 'D', 'E']:
-                print("Please enter a valid column.")
-                column = input('Please enter a ship column A-E:\n')
-
-            row, column = int(row)-1, self.let_to_num[column]
+            row, column = self.find_cell(cell)
             if self.print_board[row][column] != ' ':
                 print('You already guessed that!')
                 continue
@@ -88,14 +90,13 @@ class Computer(Board):
         Initialize Computer class
         """
         super().__init__(board)
-        self.create_ships()
 
     def choice(self):
         """
         Allows computer to choose the spot they wish to hit
         """
         ship_r, ship_cl = randint(0, 4), randint(0, 4)
-        while self.board_pattern[ship_r][ship_cl] == '-':
+        while self.print_board[ship_r][ship_cl] != ' ':
             ship_r, ship_cl = randint(0, 4), randint(0, 4)
         return ship_r, ship_cl
 
@@ -104,12 +105,22 @@ def print_boards(u_board, c_board):
     """
     Prints two game boards to the console, one for the user and another for the computer
     """
+    print('  Player ', '\t  Computer ','\t  Reference ',)
     print('  A B C D E ', '\t  A B C D E ',)
     print('  _________' '\t  _________',)
     row_num = 1
     for row in range(5):
+        ref = []
+        for i in range(1,6):
+            val  = str(i + (row_num-1)*5)
+            if len(val) == 1 :
+                ref.append(val+" ")
+            else:
+                ref.append(val)
+
         print("%d|%s|" % (row_num, "|".join(u_board[row])),
-              "\t%d|%s|" % (row_num, "|".join(c_board[row])))
+            "\t%d|%s|" % (row_num, "|".join(c_board[row])),
+            "\t%d|%s|" % (row_num, "|".join(ref)))
         row_num += 1
     print()
 
@@ -122,17 +133,16 @@ def main():
     print('Test your luck against the computer in this game of battleship!\n')
     print("Guess the positions of the 5 hidden ships on your opponent's board before the computer beats you to it!\n")
     
-    board_pattern = [[' ']*5 for x in range(5)]
-    user = User(board_pattern)
-    computer = Computer(board_pattern)
+    user = User([[' ']*5 for x in range(5)])
+    computer = Computer([[' ']*5 for x in range(5)])
     print_boards(u_board=user.toList(), c_board=computer.toList())
+    print(user.board_pattern)
 
     while True:
         row, column = user.guess()
         rowC, columnC = computer.choice()
         print('You selected the coordinates: (%d, %d) \nThe computer chose: (%d, %d)'
               % (row+1, column+1, rowC+1, columnC+1))
-
         score = user.score(row, column)
         computer.score(rowC, columnC)
         print_boards(u_board=user.toList(), c_board=computer.toList())
