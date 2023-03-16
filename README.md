@@ -1,31 +1,5 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
-
-Welcome FarehaSi,
-
-This is the Code Institute student template for deploying your third portfolio project, the Python command-line project. The last update to this file was: **August 17, 2021**
-
-## Reminders
-
-* Your code must be placed in the `run.py` file
-* Your dependencies must be placed in the `requirements.txt` file
-* Do not edit any of the other files or your code may not deploy properly
-
-## Creating the Heroku app
-
-When you create the app, you will need to add two buildpacks from the _Settings_ tab. The ordering is as follows:
-
-1. `heroku/python`
-2. `heroku/nodejs`
-
-You must then create a _Config Var_ called `PORT`. Set this to `8000`
-
-If you have credentials, such as in the Love Sandwiches project, you must create another _Config Var_ called `CREDS` and paste the JSON into the value field.
-
-Connect your GitHub repository and deploy as normal.
-
-## Constraints
-
-The deployment terminal is set to 80 columns by 24 rows. That means that each line of text needs to be 80 characters or less otherwise it will be wrapped onto a second line.
-
------
-Happy coding!
+# Combat of Battleship
+<a href="https://combat-of-battleship.herokuapp.com/" target="_blank">Combat of Battleship</a>, popularly known worldwide as just ‘Battleship’, is usually a pencil and paper game that dates back to World War I. It is a guessing game for two players that is played on ruled grids where players take turns calling shots at the other player’s ships that are concealed. The objective of the game is to destroy the opponent’s fleet.
+<br>
+Combat of Battleship is meant for a single user to play against the computer. The game can be used to kill time or simply have fun with! It is targeted at individuals of all age groups and regions!
+![WebsiteMockup](https://user-images.githubusercontent.com/116716786/225623836-5e05fb86-4bf3-4605-97a6-0fcb109b897c.png)
