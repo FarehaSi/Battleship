@@ -22,20 +22,20 @@ class Board:
                 ship_r, ship_cl = randint(0, 4), randint(0, 4)
             self.board_pattern[ship_r][ship_cl] = 'X'
 
-    def score(self,row,col):
+    def score(self, row, col):
         """
         Manipulate scores and marks the hit spot
         """
         temp = self.score_val
         if self.board_pattern[row][col] == 'X':
             self.print_board[row][col] = 'X'
-            self.score_val +=1
-            
+            self.score_val += 1
+
         else:
             self.board_pattern[row][col] = '-'
             self.print_board[row][col] = '-'
 
-        return self.score_val>temp
+        return self.score_val > temp
 
     def toList(self):
         """
@@ -51,7 +51,7 @@ class Board:
                     count += 1
         self.count = count
 
-    def find_cell(self,cell):
+    def find_cell(self, cell):
         """
         Convert the number to coordinates
         """
@@ -59,10 +59,10 @@ class Board:
         cell = int(cell) - 1
         for i in range(5):
             for j in range(5):
-                cel[j+i*5] = [i,j]
-        return cel[cell][0],cel[cell][1]
+                cel[j+i*5] = [i, j]
+        return cel[cell][0], cel[cell][1]
 
-    def get_num(self,row,col):
+    def get_num(self, row, col):
         """
         Convert the coordinates to a number between 1 to 25
         """
@@ -81,8 +81,8 @@ class User(Board):
         Allows user to choose the spot they wish to hit
         """
         while True:
-            cell = input('Please enter a cell number between 1 to 25:\n').upper()
-            while cell not in [str(i) for i in range(1,26)]:
+            cell = input('Please enter a cell number 1-25:\n').upper()
+            while cell not in [str(i) for i in range(1, 26)]:
                 print("Please enter a valid cell ")
                 cell = input('Please enter a cell no 1-25 :\n')
 
@@ -113,15 +113,15 @@ class Computer(Board):
 
 def print_boards(u_board, c_board):
     """
-    Prints two game boards to the console, one for the user and another for the computer
+    Prints two game boards to the console - one for user and one for computer
     """
-    print('    Player ', '\t   Computer ','\t    Reference \n')
+    print('    Player ', '\t   Computer ', '\t    Reference \n')
     row_num = 1
     for row in range(5):
         ref = []
-        for i in range(1,6):
-            val  = str(i + (row_num-1)*5)
-            if len(val) == 1 :
+        for i in range(1, 6):
+            val = str(i + (row_num - 1)*5)
+            if len(val) == 1:
                 ref.append(val+" ")
             else:
                 ref.append(val)
@@ -135,12 +135,13 @@ def print_boards(u_board, c_board):
 
 def main():
 
-    print('------------------------------------------------------------------')
-    print('--------------| Welcome to the Combat of Battleship |-------------')
-    print('------------------------------------------------------------------\n')
+    print('---------------------------------------------------------------')
+    print('------------| Welcome to the Combat of Battleship |------------')
+    print('---------------------------------------------------------------\n')
     print('Test your luck against the computer in this game of battleship!\n')
-    print("Guess the positions of the 5 hidden ships on your opponent's board before the   computer beats you to it!\n")
-    
+    print("Guess the positions of the 5 hidden ships on your opponent's")
+    print("board before the computer beats you to it!\n")
+
     user = User([[' ']*5 for x in range(5)])
     computer = Computer([[' ']*5 for x in range(5)])
     print_boards(u_board=user.toList(), c_board=computer.toList())
@@ -148,8 +149,8 @@ def main():
     while True:
         row, column = user.guess()
         rowC, columnC = computer.choice()
-        print('\nYou selected: %d \nThe computer chose: %d \n'
-            % (user.get_num(row, column), computer.get_num(rowC, columnC)))
+        print('\nYou selected: %d \nThe computer chose: %d \n' % (
+            user.get_num(row, column), computer.get_num(rowC, columnC)))
         score_user = user.score(row, column)
         score_computer = computer.score(rowC, columnC)
         print_boards(u_board=user.toList(), c_board=computer.toList())
@@ -168,18 +169,19 @@ def main():
 
         if user.count == 5 or computer.count == 5:
             if user.score_val > computer.score_val:
-                print("Congratulations! You have sunk all the battleships, you win!")
+                print("Congratulations! You've hit all battleships, you win!")
             elif user.score_val == computer.score_val:
                 print("Oops! It's a draw!")
             else:
                 print("You lose!")
-            print('Your score is: %d'%user.score_val)
-            print("The computer's score is: %d"%computer.score_val)
+            print('Your score is: %d' % user.score_val)
+            print("The computer's score is: %d" % computer.score_val)
             break
         print('-'*50)
         print('\nTake your next turn! \n')
 
     print('Game Over!')
+
 
 if __name__ == "__main__":
     main()
