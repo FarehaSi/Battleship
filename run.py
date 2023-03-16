@@ -81,10 +81,10 @@ class User(Board):
         Allows user to choose the spot they wish to hit
         """
         while True:
-            cell = input('Please enter a cell number 1-25:\n').upper()
+            cell = input('Please enter a number 1-25:\n').upper()
             while cell not in [str(i) for i in range(1, 26)]:
                 print("Please enter a valid cell ")
-                cell = input('Please enter a cell no 1-25 :\n')
+                cell = input('Please enter a number 1-25:\n')
 
             row, column = self.find_cell(cell)
             if self.print_board[row][column] != ' ':
