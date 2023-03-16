@@ -4,13 +4,13 @@
 Combat of Battleship is a Python terminal game, meant for a single user to play against the computer. There are five battleships on each game board (5x5). The player is to guess the position of the Computer's battleships. Whoever hits all 5 of the opponents' battleships first, wins the game. The game can be used to kill time or simply have fun with! It is targeted at individuals of all age groups and regions!
 ![WebsiteMockup](https://user-images.githubusercontent.com/116716786/225623836-5e05fb86-4bf3-4605-97a6-0fcb109b897c.png)
 ## Features
-![FirstLook](https://user-images.githubusercontent.com/116716786/225650351-6373289c-ebbb-485e-b6c5-f3783c014f41.png)
+![FirstLook](https://user-images.githubusercontent.com/116716786/225663186-aab9d1a8-1b12-46d6-a843-05a52d085242.png)
 
 This is the first look, that the users experience as they run the game in the terminal.
 - A welcome message greets the user, followed by brief instructions to help the player understand the concept of the game.
 - Game boards are displayed and the user is asked to choose which spot on the Computer's board they wish to hit.
 
-![CellSelection](https://user-images.githubusercontent.com/116716786/225655869-fafd51d1-1892-45a7-bf37-091e56c85f9b.png)
+![FirstTurn](https://user-images.githubusercontent.com/116716786/225663240-8c9fc1a2-eb48-42ba-b39b-c849fde65700.png)
 
 Once the player makes a selection, the following happens:
 - The computer also chooses a spot to hit 
@@ -33,6 +33,9 @@ The game has been manually tested using the following methods:
    - Strings
    - Integers outside the scope of the board 
    - Same integers were repeated twice 
+
+![ErrorMessages](https://user-images.githubusercontent.com/116716786/225663312-9d801831-8cbd-48b2-8c59-c9a4966fa32d.png)
+
 ### Validator Testing
 The code has been passed through the <a href=" https://pep8ci.herokuapp.com/" target="_blank">CI PEP8 Python Validator</a>.
 
