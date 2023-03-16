@@ -10,6 +10,19 @@ This site was deployed using Code Institute’s mock terminal for Heroku. The st
 - Set the buildbacks to Python and NodeJS in that order
 - Link the Heroku app to the repository 
 - Click on Deploy
+#### Cloning
+To create a clone of the repository within your local development environment which makes it easier to fix merge conflicts, add or remove files, and push larger commits, follow these steps:
+- Log in to GitHub, access the specific GitHub Repository [Combat of Battleship](https://github.com/FarehaSi/Battleship)
+- Above the file list on the repository page locate and click the 'Code' button (beside the 'Add file' button)
+- Copy the provided link depending on your desired option for either 'HTTPS', 'SSH key' or 'GitHub CLI.
+- Open Git Bash and change the current working directory to the location where you want the cloned directory to be made.
+- Type git clone, and then paste the specific URL you copied in Step 3.
+#### Forking
+Forking enables a third party to create a copy of the repository in order to view and/or make changes without affecting the original. To Fork this repositary:
+- Navigate to GitHub project repositary [Combat of Battleship](https://github.com/FarehaSi/Battleship)
+- In the right hand corner see the "Fork" section and click on it.
+- Select an owner for the forked repository.
+- Click Create fork button.
 ## Credits
 The following have been instrumental in helping me build this project:
 - <a href=" https://www.youtube.com/@KnowledgeMavens" target="_blank">Knowledge Maven’s</a> YouTube videos explaining how to build a battleship game in Python.
