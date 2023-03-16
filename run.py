@@ -115,7 +115,7 @@ def print_boards(u_board, c_board):
     """
     Prints two game boards to the console, one for the user and another for the computer
     """
-    print('    Player ', '\t  Computer ','\t    Reference \n')
+    print('    Player ', '\t   Computer ','\t    Reference \n')
     row_num = 1
     for row in range(5):
         ref = []
@@ -126,9 +126,9 @@ def print_boards(u_board, c_board):
             else:
                 ref.append(val)
 
-        print("%d|%s|" % (row_num, "|".join(u_board[row])),
-            "\t%d|%s|" % (row_num, "|".join(c_board[row])),
-            "\t%d|%s|" % (row_num, "|".join(ref)))
+        print(" |%s|" % ("|".join(u_board[row])),
+              "\t |%s|" % ("|".join(c_board[row])),
+              "\t |%s|" % ("|".join(ref)))
         row_num += 1
     print()
 
