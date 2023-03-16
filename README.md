@@ -1,9 +1,26 @@
 # Combat of Battleship
 <a href="https://combat-of-battleship.herokuapp.com/" target="_blank">Combat of Battleship</a>, popularly known worldwide as just ‘Battleship’, is usually a pencil and paper game that dates back to World War I. It is a guessing game for two players that is played on ruled grids where players take turns calling shots at the other player’s ships that are concealed. The objective of the game is to destroy the opponent’s fleet.
 <br>
-Combat of Battleship is meant for a single user to play against the computer. The game can be used to kill time or simply have fun with! It is targeted at individuals of all age groups and regions!
+Combat of Battleship is a Python terminal game, meant for a single user to play against the computer. There are five battleships on each game board (5x5). The player is to guess the position of the Computer's battleships. Whoever hits all 5 of the opponents' battleships first, wins the game. The game can be used to kill time or simply have fun with! It is targeted at individuals of all age groups and regions!
 ![WebsiteMockup](https://user-images.githubusercontent.com/116716786/225623836-5e05fb86-4bf3-4605-97a6-0fcb109b897c.png)
 ## Features
+![FirstLook](https://user-images.githubusercontent.com/116716786/225650351-6373289c-ebbb-485e-b6c5-f3783c014f41.png)
+
+This is the first look, that the users experience as they run the game in the terminal.
+- A welcome message greets the user, followed by brief instructions to help the player understand the concept of the game.
+- Game boards are displayed and the user is asked to choose which spot on the Computer's board they wish to hit.
+
+![CellSelection](https://user-images.githubusercontent.com/116716786/225655869-fafd51d1-1892-45a7-bf37-091e56c85f9b.png)
+
+Once the player makes a selection, the following happens:
+- The computer also chooses a spot to hit 
+- Both the selections are printed to the console
+- Updated boards are printed to the terminal. First one displays the user's targets and the other the computer's. 
+- A reference table is simultaneously printed alongside to facilitate user selection.
+- A "-" on the board represents a miss
+- An "x" represents a hit
+- Beneath the results from the first move, the user is prompted to take the next turn
+- The game continues until either the player or the computer hits all 5 of the opponent's battleships.
 ### Features Left to Implement
 The game can be expanded to allow the player:
 - To input their own name to give a personal feel
