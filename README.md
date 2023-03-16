@@ -3,13 +3,19 @@
 <br>
 Combat of Battleship is meant for a single user to play against the computer. The game can be used to kill time or simply have fun with! It is targeted at individuals of all age groups and regions!
 ![WebsiteMockup](https://user-images.githubusercontent.com/116716786/225623836-5e05fb86-4bf3-4605-97a6-0fcb109b897c.png)
+## Features
+### Features Left to Implement
+The game can be expanded to allow the player:
+- To input their own name to give a personal feel
+- To select board size and number of ships
+- To have ships larger than 1x1
 ## Testing
 The game has been manually tested using the following methods:
+- The game was run in both the GitPod Console and the Code Institute Heroku Terminal
 - Invalid inputs were given: 
    - Strings
    - Integers outside the scope of the board 
    - Same integers were repeated twice 
-- The game was run in both the GitPod Console and the Code Institute Heroku Terminal
 ### Validator Testing
 The code has been passed through the <a href=" https://pep8ci.herokuapp.com/" target="_blank">CI PEP8 Python Validator</a>.
 
